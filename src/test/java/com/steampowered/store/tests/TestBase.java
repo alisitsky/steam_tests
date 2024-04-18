@@ -6,6 +6,11 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Map;
+
+import static com.steampowered.store.utils.AttachUtils.*;
 
 public class TestBase {
 
@@ -20,14 +25,22 @@ public class TestBase {
 //        Configuration.browserVersion = webConfig.browserVersion();
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
+
+//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";  // String.valueOf(webConfig.remoteUrl());
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
     }
 
     @AfterEach
     void afterEach() {
-//        attachScreenshotAs("Last Step Screenshot");
-//        attachPageSource();
-//        attachBrowserConsoleLogs();
-//        attachVideo();
+        attachScreenshotAs("Last Step Screenshot");
+        attachPageSource();
+        attachBrowserConsoleLogs();
+        attachVideo();
         Selenide.clearBrowserCookies();
         Selenide.clearBrowserLocalStorage();
         Selenide.closeWebDriver();

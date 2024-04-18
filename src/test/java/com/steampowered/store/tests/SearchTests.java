@@ -29,5 +29,4 @@ public class SearchTests extends TestBase {
         $("input#store_nav_search_term").sendKeys(ARROW_DOWN, ENTER);
         $("div#appHubAppName").shouldHave(text("Disco Elysium"));
     }
-
 }

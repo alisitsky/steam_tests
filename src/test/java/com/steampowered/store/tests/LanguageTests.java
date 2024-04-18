@@ -18,8 +18,7 @@ public class LanguageTests extends TestBase {
         return Stream.of(
                 new String[]{"Français", "MAGASIN"},
                 new String[]{"Deutsch ", "SHOP"},
-                new String[]{"Español ", "TIENDA"}
-        );
+                new String[]{"Español ", "TIENDA"});
     }
 
     @ParameterizedTest
@@ -49,8 +48,5 @@ public class LanguageTests extends TestBase {
 
         open(baseUrl);
         $("div.supernav_container").shouldHave(text(headerText));
-        sleep(1000);
     }
-
-
 }
