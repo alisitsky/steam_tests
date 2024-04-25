@@ -1,22 +1,15 @@
 package com.steampowered.store.tests;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
-import io.restassured.RestAssured;
+import com.steampowered.store.pages.GamePage;
 import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.steampowered.store.utils.RandomUtils.waitForCookie;
+import static com.steampowered.store.data.TestData.*;
+import static com.steampowered.store.utils.RandomUtils.*;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
@@ -26,53 +19,51 @@ public class CartTests extends TestBase {
     @Test
     public void validateCartWithSeveralGamesTest() {
 
-        step("Open game page", () -> {
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--lang=en");
-            Configuration.browserCapabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        GamePage gamePage = new GamePage();
 
-            open("https://store.steampowered.com/app/632470/Disco_Elysium__The_Final_Cut/");
+        step("Open game page", () -> {
+            setBrowserLanguage("en");
+            gamePage.openPage();
         });
 
         step("Add game to cart via UI", () -> {
-            $$("div.btn_addtocart").first().click();
+            gamePage.addFirstItemToCart();
         });
 
-
-        String sessionIdCookieValue = getWebDriver().manage().getCookieNamed("sessionid").getValue();
-        String browserIdCookieValue = getWebDriver().manage().getCookieNamed("browserid").getValue();
-        waitForCookie("shoppingCartGID", 4);
-        String shoppingCartGIDCookieValue = getWebDriver().manage().getCookieNamed("shoppingCartGID").getValue();
-
-
         step("Add more games via API", () -> {
+//            String sessionIdCookieValue = getWebDriver().manage().getCookieNamed("sessionid").getValue();
+//            String browserIdCookieValue = getWebDriver().manage().getCookieNamed("browserid").getValue();
+//            waitForCookie("shoppingCartGID", 4);
+//            String shoppingCartGIDCookieValue = getWebDriver().manage().getCookieNamed("shoppingCartGID").getValue();
+
             // Define the base URL
-            baseURI = "https://store.steampowered.com";
+//            baseURI = "https://store.steampowered.com";
 
             // Add headers
             given()
                     .contentType(ContentType.MULTIPART)
-                    .multiPart("subid", "407916")   //  pathologic 2 subid
-                    .multiPart("sessionid", sessionIdCookieValue)
+                    .multiPart("subid", game2SubId)   //  pathologic 2 subid
+                    .multiPart("sessionid", getCookieValue("sessionid"))
                     .multiPart("action", "add_to_cart")
-                    .cookie("browserid", browserIdCookieValue)
-                    .cookie("sessionid", sessionIdCookieValue)
-                    .cookie("shoppingCartGID", shoppingCartGIDCookieValue)
+                    .cookie("browserid", getCookieValue("browserid"))
+                    .cookie("sessionid", getCookieValue("sessionid"))
+                    .cookie("shoppingCartGID", getCookieValue("shoppingCartGID", 4))
                     .when()
-                    .post("/cart/addtocart")
+                    .post(addToCartApiPath)
                     .then()
                     .log().all(); // This will print the response for verification
 
+
             given()
                     .contentType(ContentType.MULTIPART)
-                    .multiPart("subid", "260435")   //  talos 2 subid
-                    .multiPart("sessionid", sessionIdCookieValue)
+                    .multiPart("subid", game3SubId)   //  talos 2 subid
+                    .multiPart("sessionid", getCookieValue("sessionid"))
                     .multiPart("action", "add_to_cart")
-                    .cookie("browserid", browserIdCookieValue)
-                    .cookie("sessionid", sessionIdCookieValue)
-                    .cookie("shoppingCartGID", shoppingCartGIDCookieValue)
+                    .cookie("browserid", getCookieValue("browserid"))
+                    .cookie("sessionid", getCookieValue("sessionid"))
+                    .cookie("shoppingCartGID", getCookieValue("shoppingCartGID", 4))
                     .when()
-                    .post("/cart/addtocart")
+                    .post(addToCartApiPath)
                     .then()
                     .log().all(); // This will print the response for verification
 

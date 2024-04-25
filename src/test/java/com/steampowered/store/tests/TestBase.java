@@ -21,8 +21,8 @@ public class TestBase {
 //        ProjectConfigurator projectConfigurator = new ProjectConfigurator(webConfig);
 //        projectConfigurator.setWebConfig();
 
-//        RestAssured.baseURI = "https://store.steampowered.com";
-        Configuration.baseUrl = "https://store.steampowered.com/";
+        RestAssured.baseURI = "https://store.steampowered.com";
+        Configuration.baseUrl = "https://store.steampowered.com";
         Configuration.browser = "chrome";
 //        Configuration.browserVersion = webConfig.browserVersion();
         Configuration.browserSize = "1920x1080";
