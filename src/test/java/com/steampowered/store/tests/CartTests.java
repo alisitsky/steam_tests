@@ -1,18 +1,21 @@
 package com.steampowered.store.tests;
 
+import com.steampowered.store.model.AddToCartResponseBodyModel;
 import com.steampowered.store.pages.GamePage;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.steampowered.store.data.TestData.*;
-import static com.steampowered.store.utils.RandomUtils.*;
+import static com.steampowered.store.utils.RandomUtils.getCookieValue;
+import static com.steampowered.store.utils.RandomUtils.setBrowserLanguage;
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CartTests extends TestBase {
 
@@ -30,44 +33,47 @@ public class CartTests extends TestBase {
             gamePage.addFirstItemToCart();
         });
 
-        step("Add more games via API", () -> {
-//            String sessionIdCookieValue = getWebDriver().manage().getCookieNamed("sessionid").getValue();
-//            String browserIdCookieValue = getWebDriver().manage().getCookieNamed("browserid").getValue();
-//            waitForCookie("shoppingCartGID", 4);
-//            String shoppingCartGIDCookieValue = getWebDriver().manage().getCookieNamed("shoppingCartGID").getValue();
 
-            // Define the base URL
-//            baseURI = "https://store.steampowered.com";
+        AddToCartResponseBodyModel addToCartResponseBM1 =
+                step("Add one more game via API", () ->
+                        given()
+                                .contentType(ContentType.MULTIPART)
+                                .multiPart("subid", game2SubId)   //  pathologic 2 subid 407916
+                                .multiPart("sessionid", getCookieValue("sessionid"))
+                                .multiPart("action", "add_to_cart")
+                                .cookie("browserid", getCookieValue("browserid"))
+                                .cookie("sessionid", getCookieValue("sessionid"))
+                                .cookie("shoppingCartGID", getCookieValue("shoppingCartGID", 4))
+                                .when()
+                                .post(addToCartApiPath)
+                                .then()
+                                .log().all()
+                                .statusCode(200) // Check for HTTP 200 status code
+                                .extract().as(AddToCartResponseBodyModel.class));
 
-            // Add headers
-            given()
-                    .contentType(ContentType.MULTIPART)
-                    .multiPart("subid", game2SubId)   //  pathologic 2 subid
-                    .multiPart("sessionid", getCookieValue("sessionid"))
-                    .multiPart("action", "add_to_cart")
-                    .cookie("browserid", getCookieValue("browserid"))
-                    .cookie("sessionid", getCookieValue("sessionid"))
-                    .cookie("shoppingCartGID", getCookieValue("shoppingCartGID", 4))
-                    .when()
-                    .post(addToCartApiPath)
-                    .then()
-                    .log().all(); // This will print the response for verification
+        step("Check game added", () -> {
+            assertTrue(addToCartResponseBM1.isSuccess());
+            assertEquals(Integer.parseInt(game2SubId), addToCartResponseBM1.getContents().getLineItems().get(1).getPackageItem().getPackageId());
+        });
 
+        AddToCartResponseBodyModel addToCartResponseBM2 = step("Add one more game via API", () ->
+                given()
+                        .contentType(ContentType.MULTIPART)
+                        .multiPart("subid", game3SubId)   //  talos 2 subid
+                        .multiPart("sessionid", getCookieValue("sessionid"))
+                        .multiPart("action", "add_to_cart")
+                        .cookie("browserid", getCookieValue("browserid"))
+                        .cookie("sessionid", getCookieValue("sessionid"))
+                        .cookie("shoppingCartGID", getCookieValue("shoppingCartGID", 4))
+                        .when()
+                        .post(addToCartApiPath)
+                        .then()
+                        .log().all() // This will print the response for verification
+                        .extract().as(AddToCartResponseBodyModel.class));
 
-            given()
-                    .contentType(ContentType.MULTIPART)
-                    .multiPart("subid", game3SubId)   //  talos 2 subid
-                    .multiPart("sessionid", getCookieValue("sessionid"))
-                    .multiPart("action", "add_to_cart")
-                    .cookie("browserid", getCookieValue("browserid"))
-                    .cookie("sessionid", getCookieValue("sessionid"))
-                    .cookie("shoppingCartGID", getCookieValue("shoppingCartGID", 4))
-                    .when()
-                    .post(addToCartApiPath)
-                    .then()
-                    .log().all(); // This will print the response for verification
-
-            //todo добавить проверку ответа на саксесс
+        step("Check game added", () -> {
+            assertTrue(addToCartResponseBM2.isSuccess());
+            assertEquals(Integer.parseInt(game2SubId), addToCartResponseBM2.getContents().getLineItems().get(1).getPackageItem().getPackageId());
         });
 
         step("Proceed to Cart", () -> {

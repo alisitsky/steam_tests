@@ -38,14 +38,17 @@ public class TestBase {
     }
 
     @AfterEach
-    void afterEach() {
+    void attachments() {
         attachScreenshotAs("Last Step Screenshot");
         attachPageSource();
         attachBrowserConsoleLogs();
         attachVideo();
+    }
+
+    @AfterEach
+    void afterEach(){
         Selenide.clearBrowserCookies();
         Selenide.clearBrowserLocalStorage();
         Selenide.closeWebDriver();
     }
-
 }

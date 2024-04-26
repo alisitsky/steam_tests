@@ -6,6 +6,4 @@ public class TestData {
                             game2SubId = "407916",
                             game3SubId = "260435",
                             addToCartApiPath = "/cart/addtocart";
-
-
 }
