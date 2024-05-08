@@ -15,6 +15,7 @@ import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class AttachUtils {
 
+
     static String remoteBrowserUrl = System.getProperty("remoteBrowserUrl", "selenoid.autotests.cloud");
 
     @Attachment(value = "{attachName}", type = "image/png")

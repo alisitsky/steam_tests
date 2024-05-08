@@ -2,7 +2,6 @@ package com.steampowered.store.tests;
 
 import com.steampowered.store.model.AddToCartResponseBodyModel;
 import com.steampowered.store.pages.GamePage;
-import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -10,7 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.steampowered.store.data.TestData.*;
-import static com.steampowered.store.utils.RandomUtils.getCookieValue;
+import static com.steampowered.store.spec.AddGameToCartSpec.*;
 import static com.steampowered.store.utils.RandomUtils.setBrowserLanguage;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
@@ -33,59 +32,49 @@ public class CartTests extends TestBase {
             gamePage.addFirstItemToCart();
         });
 
+        //todo в аллюр отчет добавить инфу про запросы
 
         AddToCartResponseBodyModel addToCartResponseBM1 =
-                step("Add one more game via API", () ->
-                        given()
-                                .contentType(ContentType.MULTIPART)
-                                .multiPart("subid", game2SubId)   //  pathologic 2 subid 407916
-                                .multiPart("sessionid", getCookieValue("sessionid"))
-                                .multiPart("action", "add_to_cart")
-                                .cookie("browserid", getCookieValue("browserid"))
-                                .cookie("sessionid", getCookieValue("sessionid"))
-                                .cookie("shoppingCartGID", getCookieValue("shoppingCartGID", 4))
+                step("Add 2nd game via API", () ->
+                        given(addGameToCartRequestSpec)
+                                .multiPart("subid", game2SubId)
                                 .when()
                                 .post(addToCartApiPath)
                                 .then()
-                                .log().all()
-                                .statusCode(200) // Check for HTTP 200 status code
+                                .spec(addGameToCartResponseSpec)
                                 .extract().as(AddToCartResponseBodyModel.class));
 
         step("Check game added", () -> {
             assertTrue(addToCartResponseBM1.isSuccess());
-            assertEquals(Integer.parseInt(game2SubId), addToCartResponseBM1.getContents().getLineItems().get(1).getPackageItem().getPackageId());
+            assertEquals(Integer.parseInt(game2SubId),
+                    addToCartResponseBM1.getContents().getLineItems().get(1).getPackageItem().getPackageId());
         });
 
-        AddToCartResponseBodyModel addToCartResponseBM2 = step("Add one more game via API", () ->
-                given()
-                        .contentType(ContentType.MULTIPART)
-                        .multiPart("subid", game3SubId)   //  talos 2 subid
-                        .multiPart("sessionid", getCookieValue("sessionid"))
-                        .multiPart("action", "add_to_cart")
-                        .cookie("browserid", getCookieValue("browserid"))
-                        .cookie("sessionid", getCookieValue("sessionid"))
-                        .cookie("shoppingCartGID", getCookieValue("shoppingCartGID", 4))
+        AddToCartResponseBodyModel addToCartResponseBM2 = step("Add 3rd game via API", () ->
+                given(addGameToCartRequestSpec)
+                        .multiPart("subid", game3SubId)
                         .when()
                         .post(addToCartApiPath)
                         .then()
-                        .log().all() // This will print the response for verification
+                        .spec(addGameToCartResponseSpec)
                         .extract().as(AddToCartResponseBodyModel.class));
 
         step("Check game added", () -> {
             assertTrue(addToCartResponseBM2.isSuccess());
-            assertEquals(Integer.parseInt(game2SubId), addToCartResponseBM2.getContents().getLineItems().get(1).getPackageItem().getPackageId());
+            assertEquals(Integer.parseInt(game2SubId),
+                    addToCartResponseBM2.getContents().getLineItems().get(1).getPackageItem().getPackageId());
         });
 
         step("Proceed to Cart", () -> {
-            $$("button.DialogButton").get(1).click();
+            gamePage.confirmProceedToCartDialog();
         });
 
         step("Check cart", () -> {
-            $("div[data-featuretarget=shoppingcart-count-widget]").shouldHave(text("Cart (3)"));
-            $$("div.Panel.Focusable").findBy(text("Disco Elysium")).shouldBe(visible);
-            $$("div.Panel.Focusable").findBy(text("Pathologic 2")).shouldBe(visible);
-            $$("div.Panel.Focusable").findBy(text("The Talos Principle 2")).shouldBe(visible);
-            $$("button.Secondary.Focusable").findBy(text("Continue Shopping")).shouldBe(visible);
+            gamePage.countWidgetItemsAmount(3)
+                    .gameIsInCart(game1Title)
+                    .gameIsInCart(game2Title)
+                    .gameIsInCart(game3Title)
+                    .continueShoppingButtonIsVisible();
         });
     }
 }
