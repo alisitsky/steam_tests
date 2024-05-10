@@ -12,11 +12,8 @@ import static com.steampowered.store.data.TestData.game1PagePath;
 public class GamePage {
 
     SelenideElement firstItemAddToCartButton = $$("div.btn_addtocart").first(),
-                    proceedToCartDialogButton = $$("button.DialogButton").get(1),
-                    cartCounterWidget = $("div[data-featuretarget=shoppingcart-count-widget]"),
-                    continueShoppingButton = $$("button.Secondary.Focusable").findBy(text("Continue Shopping"));
+                    proceedToCartDialogButton = $$("button.DialogButton").get(1);
 
-    ElementsCollection gameItemPannel = $$("div.Panel.Focusable");
 
     public GamePage openPage(){
         open(game1PagePath);
@@ -33,23 +30,4 @@ public class GamePage {
         return this;
     }
 
-    public GamePage countWidgetItemsAmount(int gamesAmount){
-        cartCounterWidget.shouldHave(text("Cart (" + gamesAmount + ")"));
-        return this;
-    }
-
-    public GamePage gameIsInCart(String gameTitle){
-        gameItemPannel.findBy(text(gameTitle)).shouldBe(visible);
-        return this;
-    }
-
-    public GamePage continueShoppingButtonIsVisible(){
-        continueShoppingButton.shouldBe(visible);
-        return this;
-    }
-
-    public GamePage name(){
-
-        return this;
-    }
 }
