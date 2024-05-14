@@ -1,32 +1,31 @@
 package com.steampowered.store.tests;
 
+import com.steampowered.store.pages.GamePage;
+import com.steampowered.store.pages.MainPage;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Configuration.baseUrl;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static org.openqa.selenium.Keys.ARROW_DOWN;
-import static org.openqa.selenium.Keys.ENTER;
+import static com.steampowered.store.data.TestData.game1Title;
 
 public class SearchTests extends TestBase {
 
+    MainPage mainPage = new MainPage();
+    GamePage gamePage = new GamePage();
+
     @Test
     public void selectFromSearchSuggestByClickTest() {
-        open(baseUrl);
-        $("input#store_nav_search_term").setValue("Disco Elysium");
-        $("div#search_suggestion_contents").shouldBe(visible);
-        $("a.match_category_top").click();
-        $("div#appHubAppName").shouldHave(text("Disco Elysium"));
+        mainPage.openPage()
+                .setGameTitleIntoSearchInput(game1Title)
+                .searchSuggestIsVisible()
+                .clickTopItemFromSuggest();
+        gamePage.checkPageTitleIs(game1Title);
     }
 
     @Test
     public void selectFromSearchSuggestWithKeyboardTest() {
-        open(baseUrl);
-        $("input#store_nav_search_term").setValue("Disco Elysium");
-        $("div#search_suggestion_contents").shouldBe(visible);
-        $("input#store_nav_search_term").sendKeys(ARROW_DOWN, ENTER);
-        $("div#appHubAppName").shouldHave(text("Disco Elysium"));
+        mainPage.openPage()
+                .setGameTitleIntoSearchInput(game1Title)
+                .searchSuggestIsVisible()
+                .chooseTopItemFromSuggestWithKeyboard();
+        gamePage.checkPageTitleIs(game1Title);
     }
 }
