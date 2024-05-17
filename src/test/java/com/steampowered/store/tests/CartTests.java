@@ -4,6 +4,10 @@ import com.steampowered.store.helpers.RequestBuilder;
 import com.steampowered.store.model.AddToCartResponseBodyModel;
 import com.steampowered.store.pages.CartPage;
 import com.steampowered.store.pages.GamePage;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.ownText;
@@ -17,6 +21,8 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Epic ("Cart Tests")
+@Feature("Cart")
 public class CartTests extends TestBase {
 
     GamePage gamePage = new GamePage();
@@ -24,6 +30,8 @@ public class CartTests extends TestBase {
     RequestBuilder reqBuilder = new RequestBuilder();
 
     @Test
+    @Story("Display of games in cart")
+    @DisplayName("Validate cart with games in it")
     public void validateCartWithSeveralGamesTest() {
 
         // todo выбор языка унести в конфиг (или хотя бы значение в TestData)
@@ -83,6 +91,8 @@ public class CartTests extends TestBase {
     }
 
     @Test
+    @Story("Remove games from cart")
+    @DisplayName("Remove a game from cart")
     public void removeOneGameFromCartTest() {
 
         // todo выбор языка унести в конфиг (или хотя бы значение в TestData)
@@ -151,6 +161,8 @@ public class CartTests extends TestBase {
     }
 
     @Test
+    @Story("Remove games from cart")
+    @DisplayName("Remove all games from cart")
     public void removeAllGamesFromCartTest() {
 
         // todo выбор языка унести в конфиг (или хотя бы значение в TestData)
