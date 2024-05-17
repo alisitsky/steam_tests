@@ -50,5 +50,6 @@ public class TestBase {
         Selenide.clearBrowserCookies();
         Selenide.clearBrowserLocalStorage();
         Selenide.closeWebDriver();
+        RestAssured.reset();
     }
 }

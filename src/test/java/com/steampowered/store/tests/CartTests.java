@@ -1,5 +1,6 @@
 package com.steampowered.store.tests;
 
+import com.steampowered.store.helpers.RequestBuilder;
 import com.steampowered.store.model.AddToCartResponseBodyModel;
 import com.steampowered.store.pages.CartPage;
 import com.steampowered.store.pages.GamePage;
@@ -20,6 +21,7 @@ public class CartTests extends TestBase {
 
     GamePage gamePage = new GamePage();
     CartPage cartPage = new CartPage();
+    RequestBuilder reqBuilder = new RequestBuilder();
 
     @Test
     public void validateCartWithSeveralGamesTest() {
@@ -31,14 +33,14 @@ public class CartTests extends TestBase {
         });
 
         step("Add game to cart via UI", () -> {
-            gamePage.addFirstItemToCart();
+            gamePage.addItemToCart();
         });
 
         //todo в аллюр отчет добавить инфу про тело запроса
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
-                        given(addGameToCartRequestSpec)
-                                .multiPart("subid", game2SubId)
+                        reqBuilder.buildRequestAddingGameToCart(
+                                        given(addGameToCartRequestSpec), game2SubId)
                                 .when()
                                 .post(addToCartApiPath)
                                 .then()
@@ -51,14 +53,15 @@ public class CartTests extends TestBase {
                     addToCartResponseBM1.getContents().getLineItems().get(1).getPackageItem().getPackageId());
         });
 
-        AddToCartResponseBodyModel addToCartResponseBM2 = step("Add 3rd game via API", () ->
-                given(addGameToCartRequestSpec)
-                        .multiPart("subid", game3SubId)
-                        .when()
-                        .post(addToCartApiPath)
-                        .then()
-                        .spec(addGameToCartResponseSpec)
-                        .extract().as(AddToCartResponseBodyModel.class));
+        AddToCartResponseBodyModel addToCartResponseBM2 =
+                step("Add 3rd game via API", () ->
+                        reqBuilder.buildRequestAddingGameToCart(
+                                        given(addGameToCartRequestSpec), game3SubId)
+                                .when()
+                                .post(addToCartApiPath)
+                                .then()
+                                .spec(addGameToCartResponseSpec)
+                                .extract().as(AddToCartResponseBodyModel.class));
 
         step("Check game added", () -> {
             assertTrue(addToCartResponseBM2.isSuccess());
@@ -82,21 +85,21 @@ public class CartTests extends TestBase {
     @Test
     public void removeOneGameFromCartTest() {
 
-        // todo выбор языка унести в конфиг (или хотя бы значение в TestData) или в beforeEach/All
+        // todo выбор языка унести в конфиг (или хотя бы значение в TestData)
         step("Open game page", () -> {
             setBrowserLanguage("en");
             gamePage.openPage();
         });
 
         step("Add game to cart via UI", () -> {
-            gamePage.addFirstItemToCart();
+            gamePage.addItemToCart();
         });
 
         //todo в аллюр отчет добавить инфу про тело запроса
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
-                        given(addGameToCartRequestSpec)
-                                .multiPart("subid", game2SubId)
+                        reqBuilder.buildRequestAddingGameToCart(
+                                        given(addGameToCartRequestSpec), game2SubId)
                                 .when()
                                 .post(addToCartApiPath)
                                 .then()
@@ -109,14 +112,15 @@ public class CartTests extends TestBase {
                     addToCartResponseBM1.getContents().getLineItems().get(1).getPackageItem().getPackageId());
         });
 
-        AddToCartResponseBodyModel addToCartResponseBM2 = step("Add 3rd game via API", () ->
-                given(addGameToCartRequestSpec)
-                        .multiPart("subid", game3SubId)
-                        .when()
-                        .post(addToCartApiPath)
-                        .then()
-                        .spec(addGameToCartResponseSpec)
-                        .extract().as(AddToCartResponseBodyModel.class));
+        AddToCartResponseBodyModel addToCartResponseBM2 =
+                step("Add 3rd game via API", () ->
+                        reqBuilder.buildRequestAddingGameToCart(
+                                        given(addGameToCartRequestSpec), game3SubId)
+                                .when()
+                                .post(addToCartApiPath)
+                                .then()
+                                .spec(addGameToCartResponseSpec)
+                                .extract().as(AddToCartResponseBodyModel.class));
 
         step("Check game added", () -> {
             assertTrue(addToCartResponseBM2.isSuccess());
@@ -148,21 +152,22 @@ public class CartTests extends TestBase {
 
     @Test
     public void removeAllGamesFromCartTest() {
-        // todo выбор языка унести в конфиг (или хотя бы значение в TestData) или в beforeEach/All
+
+        // todo выбор языка унести в конфиг (или хотя бы значение в TestData)
         step("Open game page", () -> {
             setBrowserLanguage("en");
             gamePage.openPage();
         });
 
         step("Add game to cart via UI", () -> {
-            gamePage.addFirstItemToCart();
+            gamePage.addItemToCart();
         });
 
         //todo в аллюр отчет добавить инфу про тело запроса
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
-                        given(addGameToCartRequestSpec)
-                                .multiPart("subid", game2SubId)
+                        reqBuilder.buildRequestAddingGameToCart(
+                                        given(addGameToCartRequestSpec), game2SubId)
                                 .when()
                                 .post(addToCartApiPath)
                                 .then()
@@ -175,14 +180,15 @@ public class CartTests extends TestBase {
                     addToCartResponseBM1.getContents().getLineItems().get(1).getPackageItem().getPackageId());
         });
 
-        AddToCartResponseBodyModel addToCartResponseBM2 = step("Add 3rd game via API", () ->
-                given(addGameToCartRequestSpec)
-                        .multiPart("subid", game3SubId)
-                        .when()
-                        .post(addToCartApiPath)
-                        .then()
-                        .spec(addGameToCartResponseSpec)
-                        .extract().as(AddToCartResponseBodyModel.class));
+        AddToCartResponseBodyModel addToCartResponseBM2 =
+                step("Add 3rd game via API", () ->
+                        reqBuilder.buildRequestAddingGameToCart(
+                                        given(addGameToCartRequestSpec), game3SubId)
+                                .when()
+                                .post(addToCartApiPath)
+                                .then()
+                                .spec(addGameToCartResponseSpec)
+                                .extract().as(AddToCartResponseBodyModel.class));
 
         step("Check game added", () -> {
             assertTrue(addToCartResponseBM2.isSuccess());

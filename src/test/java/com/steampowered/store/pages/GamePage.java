@@ -6,10 +6,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.steampowered.store.data.TestData.game1PagePath;
 
-
 public class GamePage {
 
-    SelenideElement firstItemAddToCartButton = $$("div.btn_addtocart").first(),
+    SelenideElement addItemToCartButton = $$("div.btn_addtocart").first(),
                     proceedToCartDialogButton = $$("button.DialogButton").get(1),
                     itemTitle = $("div#appHubAppName");
 
@@ -18,8 +17,8 @@ public class GamePage {
         return this;
     }
 
-    public GamePage addFirstItemToCart() {
-        firstItemAddToCartButton.click();
+    public GamePage addItemToCart() {
+        addItemToCartButton.click();
         return this;
     }
 
