@@ -28,7 +28,19 @@
 <#if data.body??>
     <h4>Body</h4>
     <div>
-        <pre><code>${data.body}</code></pre>
+        <#if data.body.type == "multipart/form-data">
+            <#list data.body.parts as part>
+                <h5>Part: ${part.name}</h5>
+                <div>
+                    <pre><code>Name: ${part.name}</code></pre>
+                    <pre><code>FileName: ${part.fileName?if_exists?string('N/A')}</code></pre>
+                    <pre><code>ContentType: ${part.contentType?if_exists?string('N/A')}</code></pre>
+                    <pre><code>Value: ${part.value}</code></pre>
+                </div>
+            </#list>
+        <#else>
+            <pre><code>${data.body}</code></pre>
+        </#if>
     </div>
 </#if>
 
