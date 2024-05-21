@@ -7,6 +7,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
+import static com.steampowered.store.utils.RandomUtils.setBrowserLanguage;
+
 public class ProjectConfigurator {
 
     private final WebConfig webConfig;
@@ -22,6 +24,7 @@ public class ProjectConfigurator {
         Configuration.browserVersion = webConfig.getBrowserVersion();
         Configuration.browserSize = webConfig.getBrowserSize();
         Configuration.pageLoadStrategy = webConfig.getPageLoadStrategy();
+        setBrowserLanguage(webConfig.getBrowserLanguage());
         if (webConfig.getIsRemote()) {
             Configuration.remote = String.valueOf(webConfig.getRemoteUrl());
             DesiredCapabilities capabilities = new DesiredCapabilities();

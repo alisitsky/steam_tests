@@ -35,7 +35,7 @@ public class CartTests extends TestBase {
     public void validateCartWithSeveralGamesTest() {
 
         step("Open game page", () -> {
-            setBrowserLanguage("en");
+
             gamePage.openPage();
         });
 
@@ -94,7 +94,6 @@ public class CartTests extends TestBase {
     public void removeOneGameFromCartTest() {
 
         step("Open game page", () -> {
-            setBrowserLanguage("en");
             gamePage.openPage();
         });
 
@@ -162,7 +161,6 @@ public class CartTests extends TestBase {
     public void removeAllGamesFromCartTest() {
 
         step("Open game page", () -> {
-            setBrowserLanguage("en");
             gamePage.openPage();
         });
 
