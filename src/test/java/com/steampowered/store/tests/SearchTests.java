@@ -7,7 +7,6 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import static com.steampowered.store.data.TestData.game1Title;
 

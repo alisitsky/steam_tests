@@ -34,7 +34,6 @@ public class CartTests extends TestBase {
     @DisplayName("Validate cart with games in it")
     public void validateCartWithSeveralGamesTest() {
 
-        // todo выбор языка унести в конфиг (или хотя бы значение в TestData)
         step("Open game page", () -> {
             setBrowserLanguage("en");
             gamePage.openPage();
@@ -44,7 +43,6 @@ public class CartTests extends TestBase {
             gamePage.addItemToCart();
         });
 
-        //todo в аллюр отчет добавить инфу про тело запроса
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
                         reqBuilder.buildRequestAddingGameToCart(
@@ -95,7 +93,6 @@ public class CartTests extends TestBase {
     @DisplayName("Remove a game from cart")
     public void removeOneGameFromCartTest() {
 
-        // todo выбор языка унести в конфиг (или хотя бы значение в TestData)
         step("Open game page", () -> {
             setBrowserLanguage("en");
             gamePage.openPage();
@@ -105,7 +102,6 @@ public class CartTests extends TestBase {
             gamePage.addItemToCart();
         });
 
-        //todo в аллюр отчет добавить инфу про тело запроса
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
                         reqBuilder.buildRequestAddingGameToCart(
@@ -165,7 +161,6 @@ public class CartTests extends TestBase {
     @DisplayName("Remove all games from cart")
     public void removeAllGamesFromCartTest() {
 
-        // todo выбор языка унести в конфиг (или хотя бы значение в TestData)
         step("Open game page", () -> {
             setBrowserLanguage("en");
             gamePage.openPage();
@@ -175,7 +170,6 @@ public class CartTests extends TestBase {
             gamePage.addItemToCart();
         });
 
-        //todo в аллюр отчет добавить инфу про тело запроса
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
                         reqBuilder.buildRequestAddingGameToCart(
