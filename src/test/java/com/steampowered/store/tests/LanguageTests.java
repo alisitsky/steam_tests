@@ -17,7 +17,7 @@ public class LanguageTests extends TestBase {
     MainPage mainPage = new MainPage();
 
     @ParameterizedTest(name = "{0}")
-    @MethodSource("changeLanguageData")
+    @MethodSource("com.steampowered.store.data.TestData#changeLanguageData")
     @Story("Change interface language")
     @DisplayName("Change interface language to ")
     public void changeLanguageInHeaderTest(String language, String headerText) {
@@ -26,12 +26,5 @@ public class LanguageTests extends TestBase {
                 .languageDropdownIsVisible()
                 .chooseLanguageAndClick(language)
                 .headerTextLanguageIsChanged(headerText);
-    }
-
-    static Stream<String[]> changeLanguageData() {
-        return Stream.of(
-                new String[]{"Français", "MAGASIN"},
-                new String[]{"Deutsch ", "SHOP"},
-                new String[]{"Español ", "TIENDA"});
     }
 }

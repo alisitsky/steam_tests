@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "type": "object",
+  "default": {},
+  "title": "News for app",
+  "description": "Returns list of news articles for the given app",
+  "required": [
+    "appnews"
+  ],
+  "properties": {
+    "appnews": {
+      "type": "object",
+      "default": {},
+      "title": "The appnews Schema",
+      "required": [
+        "appid",
+        "newsitems",
+        "count"
+      ],
+      "properties": {
+        "appid": {
+          "type": "integer",
+          "default": 0,
+          "title": "The appid Schema"
+        },
+        "newsitems": {
+          "type": "array",
+          "default": [],
+          "title": "The newsitems Schema",
+          "items": {
+            "type": "object",
+            "title": "A Schema",
+            "required": [
+              "gid",
+              "title",
+              "url",
+              "is_external_url",
+              "author",
+              "contents",
+              "feedlabel",
+              "date",
+              "feedname",
+              "feed_type",
+              "appid"
+            ],
+            "properties": {
+              "gid": {
+                "type": "string",
+                "title": "The gid Schema"
+              },
+              "title": {
+                "type": "string",
+                "title": "The title Schema"
+              },
+              "url": {
+                "type": "string",
+                "title": "The url Schema"
+              },
+              "is_external_url": {
+                "type": "boolean",
+                "title": "The is_external_url Schema"
+              },
+              "author": {
+                "type": "string",
+                "title": "The author Schema"
+              },
+              "contents": {
+                "type": "string",
+                "title": "The contents Schema"
+              },
+              "feedlabel": {
+                "type": "string",
+                "title": "The feedlabel Schema"
+              },
+              "date": {
+                "type": "integer",
+                "title": "The date Schema"
+              },
+              "feedname": {
+                "type": "string",
+                "title": "The feedname Schema"
+              },
+              "feed_type": {
+                "type": "integer",
+                "title": "The feed_type Schema"
+              },
+              "appid": {
+                "type": "integer",
+                "title": "The appid Schema"
+              },
+              "tags": {
+                "type": "array",
+                "default": [],
+                "title": "The tags Schema",
+                "items": {
+                  "type": "string",
+                  "title": "A Schema"
+                }
+              }
+            }
+          }
+        },
+        "count": {
+          "type": "integer",
+          "default": 0,
+          "title": "The count Schema"
+        }
+      }
+    }
+  }
+}

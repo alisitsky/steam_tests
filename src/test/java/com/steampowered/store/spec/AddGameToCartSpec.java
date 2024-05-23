@@ -18,8 +18,7 @@ public class AddGameToCartSpec {
             .log().uri()
             .log().headers()
             .log().method()
-            .log().body()
-            .log().all();
+            .log().body();
 
     public static ResponseSpecification addGameToCartResponseSpec = new ResponseSpecBuilder()
             .expectStatusCode(200)

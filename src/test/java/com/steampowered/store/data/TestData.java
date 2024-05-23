@@ -1,5 +1,7 @@
 package com.steampowered.store.data;
 
+import java.util.stream.Stream;
+
 public class TestData {
 
     public static String    game1Title = "Disco Elysium",
@@ -10,4 +12,11 @@ public class TestData {
                             game3SubId = "260435",
                             addToCartApiPath = "/cart/addtocart",
                             estimatedTotalBeforeChange;
+
+    public static Stream<String[]> changeLanguageData() {
+        return Stream.of(
+                new String[]{"Français", "MAGASIN"},
+                new String[]{"Deutsch ", "SHOP"},
+                new String[]{"Español ", "TIENDA"});
+    }
 }
