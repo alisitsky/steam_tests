@@ -4,18 +4,21 @@ import com.steampowered.api.model.GetNewsForAppResponseBodyModel;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static com.steampowered.api.data.TestData.*;
+import static com.steampowered.api.data.GetNewsForAppTestData.*;
+import static com.steampowered.api.helpers.GetNewsForAppHelpers.getNewsList;
 import static com.steampowered.api.spec.GetNewsForAppSpec.getNewsForAppRequestSpec;
 import static com.steampowered.api.spec.GetNewsForAppSpec.getNewsForAppResponseSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Epic("News Endpoint Tests")
 public class GetNewsForAppTests extends TestBase {
@@ -24,38 +27,49 @@ public class GetNewsForAppTests extends TestBase {
     @DisplayName("Validate json schema")
     public void schemaValidationTest() {
 
-        step("Validate json schema", () ->
+        Response response = step("Request news json", () ->
                 given(getNewsForAppRequestSpec)
                         .when()
                         .get(getNewsForAppUrlDefault)
                         .then()
                         .spec(getNewsForAppResponseSpec)
-                        .assertThat().body(matchesJsonSchemaInClasspath("get-news-for-app.json")
-                        ));
+                        .extract()
+                        .response());
+
+        step("Validate JSON schema", () ->
+                response.then()
+                        .assertThat()
+                        .body(matchesJsonSchemaInClasspath(pathToNewsJsonSchema)));
     }
 
     @ParameterizedTest(name = "{0}")
-    @MethodSource("com.steampowered.api.data.TestData#contentTypeData")
+    @MethodSource("com.steampowered.api.data.GetNewsForAppTestData#contentTypeData")
     @Story("Response content-type is changed by cgi")
     @DisplayName("Format cgi is: ")
     public void contentTypeTest(String cgi, ContentType type) {
 
-        step("Validate content-type", () ->
+        Response response = step("Request news in given format", () ->
                 given(getNewsForAppRequestSpec)
                         .when()
                         .get(getNewsForAppUrlDefault + cgi)
                         .then()
                         .spec(getNewsForAppResponseSpec)
-                        .assertThat().contentType(type));
+                        .extract()
+                        .response());
+
+        step("Validate response format", () ->
+                response.then()
+                        .assertThat()
+                        .contentType(type));
     }
 
     @ParameterizedTest(name = "{0}")
-    @MethodSource("com.steampowered.api.data.TestData#newsCountData")
+    @MethodSource("com.steampowered.api.data.GetNewsForAppTestData#newsCountData")
     @Story("News count is changed by cgi")
     @DisplayName("Count cgi is: ")
     public void newsCountTest(String cgi, int expectedNewsCount) {
 
-        GetNewsForAppResponseBodyModel getNewsForAppRespBM = step("Request news json", () ->
+        GetNewsForAppResponseBodyModel responseBody = step("Request news json", () ->
                 given(getNewsForAppRequestSpec)
                         .when()
                         .get(getNewsForAppUrlNoCountParam + cgi)
@@ -64,7 +78,26 @@ public class GetNewsForAppTests extends TestBase {
                         .extract().as(GetNewsForAppResponseBodyModel.class));
 
         step("Check news count", () ->
-                        assertEquals(expectedNewsCount, getNewsForAppRespBM.getAppNews().getNewsItems().size())
+                assertEquals(expectedNewsCount, responseBody.getAppNews().getNewsItems().size(),
+                        "Endpoint should return given amount of news items")
         );
+    }
+
+    @Test
+    @DisplayName("Search news by tag")
+    public void searchByTagTest() {
+
+        GetNewsForAppResponseBodyModel responseBody = step("Request news json", () ->
+                given(getNewsForAppRequestSpec)
+                        .when()
+                        .get(getNewsForAppUrlDefault + getGetNewsForAppCgiTags)
+                        .then()
+                        .spec(getNewsForAppResponseSpec)
+                        .extract().as(GetNewsForAppResponseBodyModel.class));
+
+        step("Check every news has tag", () -> {
+            for (GetNewsForAppResponseBodyModel.AppNews.NewsItems item : getNewsList(responseBody))
+                assertTrue(item.getTags().contains(newsTagValue), "Each news item should contain the given tag");
+        });
     }
 }

@@ -5,19 +5,22 @@ import java.util.stream.Stream;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.http.ContentType.XML;
 
-public class TestData {
+public class GetNewsForAppTestData {
 
     public static String getNewsForAppPath = "ISteamNews/GetNewsForApp/v0002/?",
-            getNewsForAppParameterAppId = "appid=632470&",
-            getNewsForAppParameterNewsCount = "count=3&",
-            getNewsForAppParameterMaxLength = "maxlength=300&",
+            getNewsForAppCgiAppId = "appid=632470&",
+            getNewsForAppCgiNewsCount = "count=3&",
+            getNewsForAppCgiMaxLength = "maxlength=300&",
+            getGetNewsForAppCgiTags = "tags=patchnotes&",
             getNewsForAppUrlDefault = getNewsForAppPath
-                    + getNewsForAppParameterAppId
-                    + getNewsForAppParameterNewsCount
-                    + getNewsForAppParameterMaxLength,
+                                    + getNewsForAppCgiAppId
+                                    + getNewsForAppCgiNewsCount
+                                    + getNewsForAppCgiMaxLength,
             getNewsForAppUrlNoCountParam = getNewsForAppPath
-                    + getNewsForAppParameterAppId
-                    + getNewsForAppParameterMaxLength;
+                                    + getNewsForAppCgiAppId
+                                    + getNewsForAppCgiMaxLength,
+            newsTagValue = "patchnotes",
+            pathToNewsJsonSchema = "get-news-for-app.json";
 
 
     public static Stream<Object[]> contentTypeData() {
