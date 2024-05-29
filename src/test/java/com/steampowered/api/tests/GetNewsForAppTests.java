@@ -2,6 +2,7 @@ package com.steampowered.api.tests;
 
 import com.steampowered.api.model.GetNewsForAppResponseBodyModel;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -21,10 +22,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Epic("News Endpoint Tests")
+@Feature("ISteamNews/GetNewsForApp/v0002/")
 public class GetNewsForAppTests extends TestBase {
 
     @Test
-    @DisplayName("Validate json schema")
+    @Story("Response schema validation")
+    @DisplayName("Json schema")
     public void schemaValidationTest() {
 
         Response response = step("Request news json", () ->
@@ -84,7 +87,8 @@ public class GetNewsForAppTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Search news by tag")
+    @Story("Filter news by tag")
+    @DisplayName("All the news have given tag")
     public void searchByTagTest() {
 
         GetNewsForAppResponseBodyModel responseBody = step("Request news json", () ->

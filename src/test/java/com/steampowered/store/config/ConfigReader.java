@@ -1,7 +1,6 @@
 package com.steampowered.store.config;
 
 import org.aeonbits.owner.ConfigFactory;
-import com.steampowered.store.config.web.WebConfig;
 
 public enum ConfigReader {
     Instance;

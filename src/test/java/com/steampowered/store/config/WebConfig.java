@@ -1,4 +1,4 @@
-package com.steampowered.store.config.web;
+package com.steampowered.store.config;
 
 import org.aeonbits.owner.Config;
 

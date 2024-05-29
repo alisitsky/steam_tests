@@ -19,7 +19,7 @@ public class LanguageTests extends TestBase {
     @ParameterizedTest(name = "{0}")
     @MethodSource("com.steampowered.store.data.TestData#changeLanguageData")
     @Story("Change interface language")
-    @DisplayName("Change interface language to ")
+    @DisplayName("Change to ")
     public void changeLanguageInHeaderTest(String language, String headerText) {
         mainPage.openPage()
                 .clickLanguageDropdownButton()

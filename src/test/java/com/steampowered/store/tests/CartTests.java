@@ -30,8 +30,8 @@ public class CartTests extends TestBase {
     RequestBuilder reqBuilder = new RequestBuilder();
 
     @Test
-    @Story("Display of games in cart")
-    @DisplayName("Validate cart with games in it")
+    @Story("Display of games in the cart")
+    @DisplayName("Three games")
     public void validateCartWithSeveralGamesTest() {
 
         step("Open game page", () -> {
@@ -89,8 +89,8 @@ public class CartTests extends TestBase {
     }
 
     @Test
-    @Story("Remove games from cart")
-    @DisplayName("Remove a game from cart")
+    @Story("Remove games from the cart")
+    @DisplayName("Remove 1 of 3")
     public void removeOneGameFromCartTest() {
 
         step("Open game page", () -> {
@@ -156,8 +156,8 @@ public class CartTests extends TestBase {
     }
 
     @Test
-    @Story("Remove games from cart")
-    @DisplayName("Remove all games from cart")
+    @Story("Remove games from the cart")
+    @DisplayName("Remove all")
     public void removeAllGamesFromCartTest() {
 
         step("Open game page", () -> {

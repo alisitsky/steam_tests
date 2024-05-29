@@ -1,7 +1,6 @@
 package com.steampowered.store.config;
 
 import com.codeborne.selenide.Configuration;
-import com.steampowered.store.config.web.WebConfig;
 import io.restassured.RestAssured;
 import org.openqa.selenium.remote.DesiredCapabilities;
 

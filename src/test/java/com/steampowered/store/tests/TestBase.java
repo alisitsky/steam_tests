@@ -4,7 +4,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.steampowered.store.config.ConfigReader;
 import com.steampowered.store.config.ProjectConfigurator;
-import com.steampowered.store.config.web.WebConfig;
+import com.steampowered.store.config.WebConfig;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
