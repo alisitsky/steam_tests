@@ -11,7 +11,6 @@ public class RequestBuilder {
                 .multiPart("subid", subId)
                 .multiPart("sessionid", getCookieValue("sessionid"))
                 .multiPart("action", "add_to_cart")
-                .cookie("browserid", getCookieValue("browserid"))
                 .cookie("sessionid", getCookieValue("sessionid"))
                 .cookie("shoppingCartGID", getCookieValue("shoppingCartGID", 4));
     }
