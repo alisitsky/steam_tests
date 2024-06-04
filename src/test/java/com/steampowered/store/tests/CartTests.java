@@ -35,7 +35,6 @@ public class CartTests extends TestBase {
     public void validateCartWithSeveralGamesTest() {
 
         step("Open game page", () -> {
-
             gamePage.openPage();
         });
 
