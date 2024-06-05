@@ -10,6 +10,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.steampowered.store.data.TestData.*;
 import static io.qameta.allure.Allure.step;
 
@@ -28,10 +29,12 @@ public class CartTests extends TestBase {
 
         step("Open game page", () -> {
             gamePage.openPage();
+            sleep(1000);
         });
 
         step("Add game to cart via UI", () -> {
             gamePage.addItemToCart();
+            sleep(1000);
         });
 
         AddToCartResponseBodyModel addToCartResponseBM1 =
@@ -40,6 +43,7 @@ public class CartTests extends TestBase {
 
         step("Check game added", () -> {
             addToCartApi.addedSuccessfully(game2SubId, addToCartResponseBM1);
+            sleep(1000);
         });
 
         AddToCartResponseBodyModel addToCartResponseBM2 =
@@ -48,10 +52,12 @@ public class CartTests extends TestBase {
 
         step("Check game added", () -> {
             addToCartApi.addedSuccessfully(game3SubId, addToCartResponseBM2);
+            sleep(1000);
         });
 
         step("Proceed to Cart", () -> {
             gamePage.confirmProceedToCartDialog();
+            sleep(1000);
         });
 
         step("Check cart contents", () -> {
