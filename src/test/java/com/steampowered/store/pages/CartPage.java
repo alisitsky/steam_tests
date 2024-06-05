@@ -15,7 +15,8 @@ public class CartPage {
                     continueShoppingButton = $$("button.Secondary.Focusable").findBy(text("Continue Shopping")),
                     estimatedTotal = $$("button.DialogButton.Primary.Focusable").get(1).preceding(1)
                             .$$("div").findBy(text("Estimated total")).sibling(0),
-                    emptyCartMessage = $$("div.Panel.Focusable div").findBy(ownText("Your cart is empty."));
+                    emptyCartMessage = $$("div.Panel.Focusable div").findBy(ownText("Your cart is empty.")),
+                    removeAllItemsButton = $$("div.Panel.Focusable").findBy(ownText("Remove all items"));
 
     ElementsCollection gameItemPannel = $$("div.Panel.Focusable");
 
@@ -77,6 +78,11 @@ public class CartPage {
 
     public CartPage emptyCartMessageAppeared() {
         emptyCartMessage.shouldBe(visible);
+        return this;
+    }
+
+    public CartPage removeAllItems() {
+        removeAllItemsButton.click();
         return this;
     }
 

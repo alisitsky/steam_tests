@@ -1,6 +1,6 @@
 package com.steampowered.store.tests;
 
-import com.steampowered.store.helpers.RequestBuilder;
+import com.steampowered.store.api.addToCartApi;
 import com.steampowered.store.model.AddToCartResponseBodyModel;
 import com.steampowered.store.pages.CartPage;
 import com.steampowered.store.pages.GamePage;
@@ -10,24 +10,16 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.ownText;
-import static com.codeborne.selenide.Selenide.$$;
 import static com.steampowered.store.data.TestData.*;
-import static com.steampowered.store.spec.AddGameToCartSpec.addGameToCartRequestSpec;
-import static com.steampowered.store.spec.AddGameToCartSpec.addGameToCartResponseSpec;
-import static com.steampowered.store.utils.RandomUtils.setBrowserLanguage;
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Epic ("Cart Tests")
+@Epic("Cart Tests")
 @Feature("Cart")
 public class CartTests extends TestBase {
 
     GamePage gamePage = new GamePage();
     CartPage cartPage = new CartPage();
-    RequestBuilder reqBuilder = new RequestBuilder();
+    addToCartApi addToCartApi = new addToCartApi();
 
     @Test
     @Story("Display of games in the cart")
@@ -44,34 +36,18 @@ public class CartTests extends TestBase {
 
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
-                        reqBuilder.buildRequestAddingGameToCart(
-                                        given(addGameToCartRequestSpec), game2SubId)
-                                .when()
-                                .post(addToCartApiPath)
-                                .then()
-                                .spec(addGameToCartResponseSpec)
-                                .extract().as(AddToCartResponseBodyModel.class));
+                        addToCartApi.addToCart(game2SubId));
 
         step("Check game added", () -> {
-            assertTrue(addToCartResponseBM1.isSuccess());
-            assertEquals(Integer.parseInt(game2SubId),
-                    addToCartResponseBM1.getContents().getLineItems().get(1).getPackageItem().getPackageId());
+            addToCartApi.addedSuccessfully(game2SubId, addToCartResponseBM1);
         });
 
         AddToCartResponseBodyModel addToCartResponseBM2 =
                 step("Add 3rd game via API", () ->
-                        reqBuilder.buildRequestAddingGameToCart(
-                                        given(addGameToCartRequestSpec), game3SubId)
-                                .when()
-                                .post(addToCartApiPath)
-                                .then()
-                                .spec(addGameToCartResponseSpec)
-                                .extract().as(AddToCartResponseBodyModel.class));
+                        addToCartApi.addToCart(game3SubId));
 
         step("Check game added", () -> {
-            assertTrue(addToCartResponseBM2.isSuccess());
-            assertEquals(Integer.parseInt(game2SubId),
-                    addToCartResponseBM2.getContents().getLineItems().get(1).getPackageItem().getPackageId());
+            addToCartApi.addedSuccessfully(game3SubId, addToCartResponseBM2);
         });
 
         step("Proceed to Cart", () -> {
@@ -102,34 +78,18 @@ public class CartTests extends TestBase {
 
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
-                        reqBuilder.buildRequestAddingGameToCart(
-                                        given(addGameToCartRequestSpec), game2SubId)
-                                .when()
-                                .post(addToCartApiPath)
-                                .then()
-                                .spec(addGameToCartResponseSpec)
-                                .extract().as(AddToCartResponseBodyModel.class));
+                        addToCartApi.addToCart(game2SubId));
 
         step("Check game added", () -> {
-            assertTrue(addToCartResponseBM1.isSuccess());
-            assertEquals(Integer.parseInt(game2SubId),
-                    addToCartResponseBM1.getContents().getLineItems().get(1).getPackageItem().getPackageId());
+            addToCartApi.addedSuccessfully(game2SubId, addToCartResponseBM1);
         });
 
         AddToCartResponseBodyModel addToCartResponseBM2 =
                 step("Add 3rd game via API", () ->
-                        reqBuilder.buildRequestAddingGameToCart(
-                                        given(addGameToCartRequestSpec), game3SubId)
-                                .when()
-                                .post(addToCartApiPath)
-                                .then()
-                                .spec(addGameToCartResponseSpec)
-                                .extract().as(AddToCartResponseBodyModel.class));
+                        addToCartApi.addToCart(game3SubId));
 
         step("Check game added", () -> {
-            assertTrue(addToCartResponseBM2.isSuccess());
-            assertEquals(Integer.parseInt(game2SubId),
-                    addToCartResponseBM2.getContents().getLineItems().get(1).getPackageItem().getPackageId());
+            addToCartApi.addedSuccessfully(game3SubId, addToCartResponseBM2);
         });
 
         step("Proceed to Cart", () -> {
@@ -169,34 +129,18 @@ public class CartTests extends TestBase {
 
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
-                        reqBuilder.buildRequestAddingGameToCart(
-                                        given(addGameToCartRequestSpec), game2SubId)
-                                .when()
-                                .post(addToCartApiPath)
-                                .then()
-                                .spec(addGameToCartResponseSpec)
-                                .extract().as(AddToCartResponseBodyModel.class));
+                        addToCartApi.addToCart(game2SubId));
 
         step("Check game added", () -> {
-            assertTrue(addToCartResponseBM1.isSuccess());
-            assertEquals(Integer.parseInt(game2SubId),
-                    addToCartResponseBM1.getContents().getLineItems().get(1).getPackageItem().getPackageId());
+            addToCartApi.addedSuccessfully(game2SubId, addToCartResponseBM1);
         });
 
         AddToCartResponseBodyModel addToCartResponseBM2 =
                 step("Add 3rd game via API", () ->
-                        reqBuilder.buildRequestAddingGameToCart(
-                                        given(addGameToCartRequestSpec), game3SubId)
-                                .when()
-                                .post(addToCartApiPath)
-                                .then()
-                                .spec(addGameToCartResponseSpec)
-                                .extract().as(AddToCartResponseBodyModel.class));
+                        addToCartApi.addToCart(game3SubId));
 
         step("Check game added", () -> {
-            assertTrue(addToCartResponseBM2.isSuccess());
-            assertEquals(Integer.parseInt(game2SubId),
-                    addToCartResponseBM2.getContents().getLineItems().get(1).getPackageItem().getPackageId());
+            addToCartApi.addedSuccessfully(game3SubId, addToCartResponseBM2);
         });
 
         step("Proceed to Cart", () -> {
@@ -208,7 +152,7 @@ public class CartTests extends TestBase {
         });
 
         step("Click \"Remove all items\"", () -> {
-            $$("div.Panel.Focusable").findBy(ownText("Remove all items")).click();
+            cartPage.removeAllItems();
         });
 
         step("Check cart contents", () -> {
