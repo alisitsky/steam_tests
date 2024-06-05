@@ -53,8 +53,6 @@ public class CartTests extends TestBase {
 
         step("Proceed to Cart", () -> {
             gamePage.confirmProceedToCartDialog();
-            sleep(1000);
-
         });
 
         step("Check cart contents", () -> {
