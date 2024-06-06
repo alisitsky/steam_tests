@@ -4,17 +4,14 @@ import com.steampowered.store.api.addToCartApi;
 import com.steampowered.store.model.AddToCartResponseBodyModel;
 import com.steampowered.store.pages.CartPage;
 import com.steampowered.store.pages.GamePage;
-import io.qameta.allure.AllureId;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selenide.sleep;
 import static com.steampowered.store.data.TestData.*;
 import static io.qameta.allure.Allure.step;
 
+@Layer("ui")
 @Epic("Cart Tests")
 @Feature("Cart")
 public class CartTests extends TestBase {
@@ -27,6 +24,7 @@ public class CartTests extends TestBase {
     @AllureId("32709")
     @Story("Display of games in the cart")
     @DisplayName("Three games")
+    @Owner("alisitsky")
     public void validateCartWithSeveralGamesTest() {
 
         step("Open game page", () -> {
@@ -70,6 +68,7 @@ public class CartTests extends TestBase {
     @AllureId("32708")
     @Story("Remove games from the cart")
     @DisplayName("Remove 1 of 3")
+    @Owner("alisitsky")
     public void removeOneGameFromCartTest() {
 
         step("Open game page", () -> {
@@ -122,6 +121,7 @@ public class CartTests extends TestBase {
     @AllureId("32710")
     @Story("Remove games from the cart")
     @DisplayName("Remove all")
+    @Owner("alisitsky")
     public void removeAllGamesFromCartTest() {
 
         step("Open game page", () -> {
