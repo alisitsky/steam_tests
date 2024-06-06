@@ -2,6 +2,7 @@ package com.steampowered.store.tests;
 
 import com.steampowered.store.pages.GamePage;
 import com.steampowered.store.pages.MainPage;
+import io.qameta.allure.AllureId;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -18,6 +19,7 @@ public class SearchTests extends TestBase {
     GamePage gamePage = new GamePage();
 
     @Test
+    @AllureId("32647")
     @Story("Search game by name")
     @DisplayName("Select game from search suggest via click")
     public void selectFromSearchSuggestByClickTest() {
@@ -29,6 +31,7 @@ public class SearchTests extends TestBase {
     }
 
     @Test
+    @AllureId("32700")
     @Story("Search game by name")
     @DisplayName("Select game from search suggest via keyboard")
     public void selectFromSearchSuggestWithKeyboardTest() {

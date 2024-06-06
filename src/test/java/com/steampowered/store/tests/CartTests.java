@@ -4,6 +4,7 @@ import com.steampowered.store.api.addToCartApi;
 import com.steampowered.store.model.AddToCartResponseBodyModel;
 import com.steampowered.store.pages.CartPage;
 import com.steampowered.store.pages.GamePage;
+import io.qameta.allure.AllureId;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -23,6 +24,7 @@ public class CartTests extends TestBase {
     addToCartApi addToCartApi = new addToCartApi();
 
     @Test
+    @AllureId("32709")
     @Story("Display of games in the cart")
     @DisplayName("Three games")
     public void validateCartWithSeveralGamesTest() {
@@ -65,6 +67,7 @@ public class CartTests extends TestBase {
     }
 
     @Test
+    @AllureId("32708")
     @Story("Remove games from the cart")
     @DisplayName("Remove 1 of 3")
     public void removeOneGameFromCartTest() {
@@ -116,6 +119,7 @@ public class CartTests extends TestBase {
     }
 
     @Test
+    @AllureId("32710")
     @Story("Remove games from the cart")
     @DisplayName("Remove all")
     public void removeAllGamesFromCartTest() {

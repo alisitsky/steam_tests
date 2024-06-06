@@ -1,6 +1,7 @@
 package com.steampowered.api.tests;
 
 import com.steampowered.api.model.GetNewsForAppResponseBodyModel;
+import io.qameta.allure.AllureId;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -26,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class GetNewsForAppTests extends TestBase {
 
     @Test
+    @AllureId("32651")
     @Story("Response schema validation")
     @DisplayName("Json schema")
     public void schemaValidationTest() {
@@ -46,6 +48,7 @@ public class GetNewsForAppTests extends TestBase {
     }
 
     @ParameterizedTest(name = "{0}")
+    @AllureId("32653")
     @MethodSource("com.steampowered.api.data.GetNewsForAppTestData#contentTypeData")
     @Story("Response content-type is changed by cgi")
     @DisplayName("Format cgi is: ")
@@ -67,6 +70,7 @@ public class GetNewsForAppTests extends TestBase {
     }
 
     @ParameterizedTest(name = "{0}")
+    @AllureId("32652")
     @MethodSource("com.steampowered.api.data.GetNewsForAppTestData#newsCountData")
     @Story("News count is changed by cgi")
     @DisplayName("Count cgi is: ")
@@ -87,6 +91,7 @@ public class GetNewsForAppTests extends TestBase {
     }
 
     @Test
+    @AllureId("32654")
     @Story("Filter news by tag")
     @DisplayName("All the news have given tag")
     public void searchByTagTest() {

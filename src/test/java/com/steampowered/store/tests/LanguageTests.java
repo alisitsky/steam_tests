@@ -1,6 +1,7 @@
 package com.steampowered.store.tests;
 
 import com.steampowered.store.pages.MainPage;
+import io.qameta.allure.AllureId;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -17,6 +18,7 @@ public class LanguageTests extends TestBase {
     MainPage mainPage = new MainPage();
 
     @ParameterizedTest(name = "{0}")
+    @AllureId("32711")
     @MethodSource("com.steampowered.store.data.TestData#changeLanguageData")
     @Story("Change interface language")
     @DisplayName("Change to ")
