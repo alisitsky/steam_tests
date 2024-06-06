@@ -24,6 +24,7 @@ dependencies {
             'org.slf4j:slf4j-simple:2.0.7',
             'io.qameta.allure:allure-junit5:2.27.0'
     )
+    implementation("io.qameta.allure:allure-java-commons:2.27.0")
 }
 
 allure {

@@ -1,10 +1,7 @@
 package com.steampowered.api.tests;
 
 import com.steampowered.api.model.GetNewsForAppResponseBodyModel;
-import io.qameta.allure.AllureId;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -22,6 +19,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Layer("api")
 @Epic("News Endpoint Tests")
 @Feature("ISteamNews/GetNewsForApp/v0002/")
 public class GetNewsForAppTests extends TestBase {
