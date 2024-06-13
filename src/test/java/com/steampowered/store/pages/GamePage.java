@@ -1,7 +1,6 @@
 package com.steampowered.store.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -28,7 +27,6 @@ public class GamePage {
         return this;
     }
 
-    @Step("Page title corresponds to chosen game")
     public GamePage checkPageTitleIs(String gameTitle) {
         itemTitle.shouldHave(text(gameTitle));
         return this;

@@ -27,33 +27,28 @@ public class CartTests extends TestBase {
     @Owner("alisitsky")
     public void validateCartWithSeveralGamesTest() {
 
-        step("Open game page", () -> {
-            gamePage.openPage();
-        });
+        step("Open game page", () ->
+                gamePage.openPage());
 
-        step("Add game to cart via UI", () -> {
-            gamePage.addItemToCart();
-        });
+        step("Add game to cart via UI", () ->
+                gamePage.addItemToCart());
 
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
                         addToCartApi.addToCart(game2SubId));
 
-        step("Check game added", () -> {
-            addToCartApi.addedSuccessfully(game2SubId, addToCartResponseBM1);
-        });
+        step("Check game added", () ->
+                addToCartApi.addedSuccessfully(game2SubId, addToCartResponseBM1));
 
         AddToCartResponseBodyModel addToCartResponseBM2 =
                 step("Add 3rd game via API", () ->
                         addToCartApi.addToCart(game3SubId));
 
-        step("Check game added", () -> {
-            addToCartApi.addedSuccessfully(game3SubId, addToCartResponseBM2);
-        });
+        step("Check game added", () ->
+                addToCartApi.addedSuccessfully(game3SubId, addToCartResponseBM2));
 
-        step("Proceed to Cart", () -> {
-            gamePage.confirmProceedToCartDialog();
-        });
+        step("Proceed to Cart", () ->
+                gamePage.confirmProceedToCartDialog());
 
         step("Check cart contents", () -> {
             cartPage.countWidgetItemsAmountIs(3)
@@ -71,41 +66,34 @@ public class CartTests extends TestBase {
     @Owner("alisitsky")
     public void removeOneGameFromCartTest() {
 
-        step("Open game page", () -> {
-            gamePage.openPage();
-        });
+        step("Open game page", () ->
+                gamePage.openPage());
 
-        step("Add game to cart via UI", () -> {
-            gamePage.addItemToCart();
-        });
+        step("Add game to cart via UI", () ->
+                gamePage.addItemToCart());
 
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
                         addToCartApi.addToCart(game2SubId));
 
-        step("Check game added", () -> {
-            addToCartApi.addedSuccessfully(game2SubId, addToCartResponseBM1);
-        });
+        step("Check game added", () ->
+                addToCartApi.addedSuccessfully(game2SubId, addToCartResponseBM1));
 
         AddToCartResponseBodyModel addToCartResponseBM2 =
                 step("Add 3rd game via API", () ->
                         addToCartApi.addToCart(game3SubId));
 
-        step("Check game added", () -> {
-            addToCartApi.addedSuccessfully(game3SubId, addToCartResponseBM2);
-        });
+        step("Check game added", () ->
+                addToCartApi.addedSuccessfully(game3SubId, addToCartResponseBM2));
 
-        step("Proceed to Cart", () -> {
-            gamePage.confirmProceedToCartDialog();
-        });
+        step("Proceed to Cart", () ->
+                gamePage.confirmProceedToCartDialog());
 
-        step("Save est.total to check it change later", () -> {
-            cartPage.saveEstimatedTotal();
-        });
+        step("Save est.total to check it change later", () ->
+                cartPage.saveEstimatedTotal());
 
-        step("Remove 1st added game from cart", () -> {
-            cartPage.removeGameFromCart(game1Title);
-        });
+        step("Remove 1st added game from cart", () ->
+                cartPage.removeGameFromCart(game1Title));
 
         step("Check cart contents", () -> {
             cartPage.countWidgetItemsAmountIs(2)
@@ -124,41 +112,34 @@ public class CartTests extends TestBase {
     @Owner("alisitsky")
     public void removeAllGamesFromCartTest() {
 
-        step("Open game page", () -> {
-            gamePage.openPage();
-        });
+        step("Open game page", () ->
+                gamePage.openPage());
 
-        step("Add game to cart via UI", () -> {
-            gamePage.addItemToCart();
-        });
+        step("Add game to cart via UI", () ->
+                gamePage.addItemToCart());
 
         AddToCartResponseBodyModel addToCartResponseBM1 =
                 step("Add 2nd game via API", () ->
                         addToCartApi.addToCart(game2SubId));
 
-        step("Check game added", () -> {
-            addToCartApi.addedSuccessfully(game2SubId, addToCartResponseBM1);
-        });
+        step("Check game added", () ->
+                addToCartApi.addedSuccessfully(game2SubId, addToCartResponseBM1));
 
         AddToCartResponseBodyModel addToCartResponseBM2 =
                 step("Add 3rd game via API", () ->
                         addToCartApi.addToCart(game3SubId));
 
-        step("Check game added", () -> {
-            addToCartApi.addedSuccessfully(game3SubId, addToCartResponseBM2);
-        });
+        step("Check game added", () ->
+                addToCartApi.addedSuccessfully(game3SubId, addToCartResponseBM2));
 
-        step("Proceed to Cart", () -> {
-            gamePage.confirmProceedToCartDialog();
-        });
+        step("Proceed to Cart", () ->
+                gamePage.confirmProceedToCartDialog());
 
-        step("Save est.total to check it change later", () -> {
-            cartPage.saveEstimatedTotal();
-        });
+        step("Save est.total to check it change later", () ->
+                cartPage.saveEstimatedTotal());
 
-        step("Click \"Remove all items\"", () -> {
-            cartPage.removeAllItems();
-        });
+        step("Click \"Remove all items\"", () ->
+                cartPage.removeAllItems());
 
         step("Check cart contents", () -> {
             cartPage.countWidgetIsNotVisible()

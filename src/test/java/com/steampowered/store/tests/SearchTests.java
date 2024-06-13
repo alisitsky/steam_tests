@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.steampowered.store.data.TestData.game1Title;
+import static io.qameta.allure.Allure.step;
 
 @Layer("ui")
 @Epic("Game Search")
@@ -22,11 +23,19 @@ public class SearchTests extends TestBase {
     @DisplayName("Select game from search suggest via click")
     @Owner("alisitsky")
     public void selectFromSearchSuggestByClickTest() {
-        mainPage.openPage()
-                .setGameTitleIntoSearchInput(game1Title)
-                .searchSuggestIsVisible()
-                .clickTopItemFromSuggest();
-        gamePage.checkPageTitleIs(game1Title);
+        step("Open main page", () ->
+                mainPage.openPage());
+
+        step("Set game title into search input", () -> {
+            mainPage.setGameTitleIntoSearchInput(game1Title)
+                    .searchSuggestIsVisible();
+        });
+
+        step("Click 1st item from search suggest", () ->
+                mainPage.clickTopItemFromSuggest());
+
+        step("Page title contains given game title", () ->
+                gamePage.checkPageTitleIs(game1Title));
     }
 
     @Test
@@ -35,10 +44,18 @@ public class SearchTests extends TestBase {
     @DisplayName("Select game from search suggest via keyboard")
     @Owner("alisitsky")
     public void selectFromSearchSuggestWithKeyboardTest() {
-        mainPage.openPage()
-                .setGameTitleIntoSearchInput(game1Title)
-                .searchSuggestIsVisible()
-                .chooseTopItemFromSuggestWithKeyboard();
-        gamePage.checkPageTitleIs(game1Title);
+        step("Open main page", () ->
+                mainPage.openPage());
+
+        step("Set game title into search input", () -> {
+            mainPage.setGameTitleIntoSearchInput(game1Title)
+                    .searchSuggestIsVisible();
+        });
+
+        step("Choose 1st game from suggest with keyboard", () ->
+                mainPage.chooseTopItemFromSuggestWithKeyboard());
+
+        step("Page title contains given game title", () ->
+                gamePage.checkPageTitleIs(game1Title));
     }
 }

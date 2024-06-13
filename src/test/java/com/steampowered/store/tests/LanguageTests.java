@@ -2,11 +2,11 @@ package com.steampowered.store.tests;
 
 import com.steampowered.store.pages.MainPage;
 import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.api.DisplayName;
 
-import java.util.stream.Stream;
+import static io.qameta.allure.Allure.step;
 
 @Layer("ui")
 @Epic("Localization")
@@ -22,10 +22,19 @@ public class LanguageTests extends TestBase {
     @DisplayName("Change to ")
     @Owner("alisitsky")
     public void changeLanguageInHeaderTest(String language, String headerText) {
-        mainPage.openPage()
-                .clickLanguageDropdownButton()
-                .languageDropdownIsVisible()
-                .chooseLanguageAndClick(language)
-                .headerTextLanguageIsChanged(headerText);
+
+        step("Open main page", () ->
+                mainPage.openPage());
+
+        step("Click language button to get dropdown", () -> {
+            mainPage.clickLanguageDropdownButton()
+                    .languageDropdownIsVisible();
+        });
+
+        step("Select language from dropdown", () ->
+                mainPage.chooseLanguageAndClick(language));
+
+        step("Header text language is changed", () ->
+                mainPage.headerTextLanguageIsChanged(headerText));
     }
 }

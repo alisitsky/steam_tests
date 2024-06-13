@@ -2,7 +2,6 @@ package com.steampowered.store.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -21,7 +20,6 @@ public class MainPage {
                         topItemOfSuggest = $("a.match_category_top");
     ElementsCollection  languageListItem = $$("a.popup_menu_item");
 
-    @Step("Open main page")
     public MainPage openPage() {
         open(baseUrl);
         return this;
@@ -47,25 +45,21 @@ public class MainPage {
         return this;
     }
 
-    @Step("Set game title into search input")
     public MainPage setGameTitleIntoSearchInput(String gameTitle) {
         searchInput.setValue(gameTitle);
         return this;
     }
 
-    @Step("Search suggest is visible")
     public MainPage searchSuggestIsVisible() {
         searchSuggestDropdown.shouldBe(visible);
         return this;
     }
 
-    @Step("Click 1st game from the suggest list")
     public MainPage clickTopItemFromSuggest() {
         topItemOfSuggest.click();
         return this;
     }
 
-    @Step("Choose 1st game from the suggest list with keyboard")
     public MainPage chooseTopItemFromSuggestWithKeyboard() {
         searchInput.sendKeys(ARROW_DOWN, ENTER);
         return this;
