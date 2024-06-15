@@ -1,5 +1,6 @@
 package com.steampowered.store.utils;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
@@ -34,9 +35,10 @@ public class AttachUtils {
     }
 
     public static void attachBrowserConsoleLogs() {
-        attachAsText(
-                "Browser console logs",
-                String.join("\n", Selenide.getWebDriverLogs(BROWSER)));
+        if (Configuration.browser == "chrome")
+            attachAsText(
+                    "Browser console logs",
+                    String.join("\n", Selenide.getWebDriverLogs(BROWSER)));
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
@@ -47,7 +49,7 @@ public class AttachUtils {
     }
 
     public static URL getVideoUrl() {
-        String videoUrl = "https://"+ remoteBrowserUrl + "/video/" + sessionId() + ".mp4";
+        String videoUrl = "https://" + remoteBrowserUrl + "/video/" + sessionId() + ".mp4";
         try {
             return new URL(videoUrl);
         } catch (MalformedURLException e) {

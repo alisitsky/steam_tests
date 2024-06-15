@@ -1,8 +1,20 @@
 
-**Project for test automation of the [banki.ru](https://www.banki.ru) web application**
 
-<a href="https://www.banki.ru/"><img alt="banki.ru" src="media/icons/banki_ru.PNG" width="40%"></a>
 
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <div>
+Project of test automation for <b>steampowered</b> products:<br>
+    - <a href="https://store.steampowered.com"><b>store</b>.steampowered.com</a><br>
+    - <a href="https://api.steampowered.com"><b>api</b>.steampowered.com</a><br>
+  </div>
+  <div>
+    <a href="https://store.steampowered.com">
+      <img alt="https://store.steampowered.com" src="src/test/resources/icons/steam-120.svg" style="width: 80%;">
+    </a>
+  </div>
+</div>
+
+____
 ## Content:
 
 - <a href="#tools">Tech stack and tools</a>
@@ -20,110 +32,95 @@ ____
 ## Tech stack and tools
 
 <p>
-  <table border="1" style="width: auto; border-collapse: collapse;">
-    <tr style="text-align: center;">
-      <th style="padding: 10px;">Code:</th>
-      <td style="padding: 10px;">
-        <a href="https://www.java.com/">
-          <img style="width: 50px;" title="Java" src="icons/Java.svg">
-        </a>
-      </td>
-      <td style="padding: 10px;">
-        <a href="https://gradle.org/">
-          <img style="width: 50px;" title="Gradle" src="media/icons/Gradle.svg">
-        </a>
-      </td>
-      <td style="padding: 10px;">
-        <a href="https://selenide.org/">
-          <img style="width: 50px;" title="Selenide" src="media/icons/Selenide.svg">
-        </a>
-      </td>
-      <td style="padding: 10px;">
-        <a href="https://junit.org/junit5/">
-          <img style="width: 50px;" title="JUnit5" src="media/icons/JUnit5.svg">
-        </a>
-      </td>
-    </tr>
-    <tr style="text-align: center;">
-      <th style="padding: 10px;">Infrastructure:</th>
-      <td style="padding: 10px;">
-        <a href="https://www.jenkins.io/">
-          <img style="width: 50px;" title="Jenkins" src="media/icons/jenkins.svg">
-        </a>
-      </td>
-      <td style="padding: 10px;">
-        <a href="https://aerokube.com/selenoid/">
-          <img style="width: 50px;" title="Selenoid" src="media/icons/Selenoid.svg">
-        </a>
-      </td>
-      <td style="padding: 10px;">
-        <a href="https://qameta.io/">
-          <img style="width: 50px;" title="Allure TestOps" src="media/icons/AllureTestOps.svg">
-        </a>
-      </td>
-      <td> <!-- Empty cell for alignment --> </td>
-    </tr>
-    <tr style="text-align: center;">
-      <th style="padding: 10px;">Visualization:</th>
-      <td style="padding: 10px;">
-        <a href="https://github.com/allure-framework/allure2">
-          <img style="width: 50px;" title="Allure Report" src="media/icons/Allure_Report.svg">
-        </a>
-      </td>
-      <td style="padding: 10px;">
-        <a href="https://www.atlassian.com/ru/software/jira/">
-          <img style="width: 50px;" title="Jira" src="media/icons/Jira.svg">
-        </a>
-      </td>
-      <td style="padding: 10px;">
-        <a href="https://slack.com/">
-          <img style="width: 50px;" title="Slack" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg">
-        </a>
-      </td>
-      <td style="padding: 10px;">
-        <a href="https://telegram.org/">
-          <img style="width: 50px;" title="Telegram" src="media/icons/telegram.png">
-        </a>
-      </td>
-    </tr>
-  </table>
 
-Tests has been written in [Java](https://www.java.com/), using the [Selenide](https://selenide.org/) framework. [Gradle](https://gradle.org/) is used as a build tool.  
-After a [Jenkins](https://www.jenkins.io/) build is started tests are being remotly executed in [Selenoid](https://aerokube.com/selenoid/).  
-Then an [Allure report](https://allurereport.org/) is generated (containing steps, screens, videos, logs), and notofications are sent to Slack and Telegram.  
-[Allure TestOps](https://qameta.io/) and [Jira](https://www.atlassian.com/software/jira) has also been integrated for test management and issue tracking.
+
+
+**Code:**
+    <a href="https://www.java.com/">
+          <img style="width: 48px;" title="Java" src="src/test/resources/icons/Java.svg">
+        </a> 
+    <a href="https://gradle.org/">
+          <img style="width: 48px;" title="Gradle" src="src/test/resources/icons/Gradle.svg">
+        </a>
+<a href="https://selenide.org/">
+          <img style="width: 48px;" title="Selenide" src="src/test/resources/icons/Selenide.svg">
+        </a>
+        <a href="https://junit.org/junit5/">
+          <img style="width: 48px;" title="JUnit5" src="src/test/resources/icons/JUnit5.svg">
+        </a>
+        <a href="https://rest-assured.io/">
+          <img style="width: 48px;" title="JUnit5" src="src/test/resources/icons/rest-assured.png">
+        </a>
+
+**Infrastructure:**
+<a href="https://www.jenkins.io/">
+<img style="width: 48px;" title="Jenkins" src="src/test/resources/icons/jenkins.svg">
+        </a>
+<a href="https://aerokube.com/selenoid/">
+          <img style="width: 48px;" title="Selenoid" src="src/test/resources/icons/Selenoid.svg">
+        </a>
+<a href="https://qameta.io/">
+          <img style="width: 48px;" title="Allure TestOps" src="src/test/resources/icons/AllureTestOps.svg">
+        </a>
+<a href="https://www.atlassian.com/ru/software/jira/">
+<img style="width: 48px;" title="Jira" src="src/test/resources/icons//Jira.svg">
+</a>
+
+**Visualization:**
+<a href="https://github.com/allure-framework/allure2">
+          <img style="width: 48px;" title="Allure Report" src="src/test/resources/icons/AllureReport.svg">
+        </a>
+        <a href="https://slack.com/">
+          <img style="width: 48px;" title="Slack" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg">
+        </a>
+        <a href="https://telegram.org/">
+          <img style="width: 48px;" title="Telegram" src="src/test/resources/icons/telegram.png">
+        </a>
+<br><br>
+Web tests are written in [**Java**](https://www.java.com/), using [**Selenide**](https://selenide.org/) framework. For API tests [**REST-assured**](https://rest-assured.io/) is used. The build tool here is [**Gradle**](https://gradle.org/).  
+As soon as [**Jenkins**](https://www.jenkins.io/) build is started tests are being remotly executed in [**Selenoid**](https://aerokube.com/selenoid/).  
+Then  [**Allure Report**](https://allurereport.org/) is generated (containing steps, screens, videos, logs), and notifications are sent to Slack and Telegram.  
+[**Allure TestOps**](https://qameta.io/) and [**Jira**](https://www.atlassian.com/software/jira) has also been integrated for test management and issue tracking purposes.
 ____
 <a id="cases"></a>
 ##  Automated Test Cases
-Header:
-- Open link from header dropdown menu and check url
-- Change location and check it's been saved
-- Submit a search request and check results
+**WEB**:
+- Cart
+  - Display of games in the cart
+  - Remove 1 of 3 games
+  - Remove all games
+- Language
+  - Change interface language [parametrized]
+- Search by game title
+    - Select game from search suggest via click
+    - Select game from search suggest via keyboard
 
-Online calc:
-- Switch calc tabs and check content visibility
-- Submit random birthdate and check it in url params
-- Calculated value changes after input values changes
 
+**API**:
+- News Endpoint Tests
+  - Json schema validation
+  - Response content-type is changed by cgi [parametrized]
+  - News count is changed by cgi [parametrized]
+  - All the news have given tag
 
 ____
 <a id="runtests"></a>
 ## Local execution
 
-<em> Run <b>all</b> the tests: </em>
+<em> Run <b>WEB</b> tests: </em>
 
 ```
-gradle clean test 
+gradle clean webTest 
 ```
+<em> Run <b>API</b> tests: </em>
 
-<em>OR by tag <b>"header_test"</b>:</em>
 ```
-gradle clean header_tests
+gradle clean apiTest 
 ```
 
 <em>Customize browser</b>:</em>
 ```
-gradle clean header_tests -Dbrowser=firefox -DbrowserSize=2550x1440
+gradle clean webTest -Dbrowser=firefox -DbrowserSize=2550x1440
 ```
 
 
@@ -138,40 +135,63 @@ gradle allureServe
 ____
 
 <a id="jenkins"></a>
-## <img width="3%" style="vertical-align:bottom" title="Jenkins" src="media/icons/jenkins.svg"> </a> Jenkins Build <a target="_blank"> </a>
+## <img width="3%" style="vertical-align:bottom" title="Jenkins" src="src/test/resources/icons/jenkins.svg"> </a> Jenkins Build <a target="_blank"> </a>
 
-To access the [job](https://jenkins.autotests.cloud/job/023-alisy42-lesson17-hw/) registration is required: https://jenkins.autotests.cloud/
+Tests may also be executed, using [**Jenkins**](https://www.jenkins.io/) instance. To access a job for [**WEB**](https://jenkins.autotests.cloud/job/steampowered-store-web-tests/build/) or [**API**](https://jenkins.autotests.cloud/job/steampowered-api-tests/build) tests register here: https://jenkins.autotests.cloud/
 
 To start the build, go to the "Build with parameters", choose params, and click "Build".
 
-After the build is finished, <img width="2%" title="Allure Report" src="media/icons/Allure_Report.svg"> and <img width="2%" title="Allure TestOps" src="media/icons/AllureTestOps.svg"> icons appear for it.  
-Click to open HTML report and check this launch in TMS, respectively.
+This way you will run chosen set of tests in a [**Selenoid**](https://aerokube.com/selenoid/) instance -- implementation of original Selenium hub, which is using Docker to launch browsers.
+
+After the build is finished, click <img width="3%" title="Allure Report" src="src/test/resources/icons/AllureReport.svg"> or <img width="3%" title="Allure TestOps" src="src/test/resources/icons/AllureTestOps.svg"> to view HTML report and check this launch in TMS, respectively.
 
 
 <p align="center">
-<img width="70%" title="Build with parameters" src="media/screenshots/jenkins_build_params.JPG">
+<img width="100%" title="Build with parameters" src="src/test/resources/screenshots/jenkins-build.JPG">
 </p>
 
 
 ____
 <a id="allureReport"></a>
-## <img width="3%" style="vertical-align:bottom" title="Allure Report" src="media/icons/Allure_Report.svg"> </a> <a target="_blank" href="https://jenkins.autotests.cloud/job/bob_autotests/20/"> Allure Report </a> Example
+## <img width="3%" style="vertical-align:bottom" title="Allure Report" src="src/test/resources/icons/AllureReport.svg"> </a> <a target="_blank" href="https://allurereport.org/"> Allure Report </a> Example
 
-Allure Report is used to create detailed customizable reports with autotests run results and provide additional info (screenshots, videos, logs) to make debugging easier.
+Allure Report is an opensource tool for detailed customizable autotest reports, providing additional info (screenshots, videos, logs) to make debugging easier.
+
+[**Report example link**](https://jenkins.autotests.cloud/job/steampowered-store-web-tests/34/allure/#)
+
+
+<details>
+  <summary><b>Screenshots:</b></summary>
 
 <p align="center">
-<img width="70%" title="Allure Overview" src="media/screenshots/Allure.JPG">
+<img width="70%" title="Allure Overview" src="src/test/resources/screenshots/allure-rport-1.JPG">
 </p>
 
 <p align="center">
-<img width="70%" title="Allure Overview" src="media/screenshots/Allure2.JPG">
+<img width="70%" title="Allure Overview" src="src/test/resources/screenshots/allure-rport-2.JPG">
 </p>
+
+<p align="center">
+<img width="70%" title="Allure Overview" src="src/test/resources/screenshots/allure-rport-3.JPG">
+</p>
+
+
+</details>
 
 ____
 <a id="allure"></a>
-## <img width="3%" style="vertical-align:bottom" title="Allure TestOps" src="media/icons/AllureTestOps.svg"> </a> <a target="_blank" href="https://allure.autotests.cloud/project/3952/dashboards"> Allure TestOps </a> Integration
+## <img width="3%" style="vertical-align:bottom" title="Allure TestOps" src="src/test/resources/icons/AllureTestOps.svg"> </a> <a target="_blank" href="https://qameta.io/"> Allure TestOps </a> Integration
 
-Allure TestOps is a TMS for test cases organizing. It helps to plan and manage both manual and automated test runs, track the progress of testing, integrate with tools like JIRA, Jenkins, etc., and provides comprehensive reports on the software quality.
+**Allure TestOps** is a powerful TMS for manual and automation testing. In this project some of its features have been implemented:
+
+- Integration with CI/CD (Jenkins)
+- Execution of any set of autotests directly from TMS
+- Test-cases auto-update after every run
+- Integration with JIRA
+- Various analytics on test runs
+ 
+ 
+
 
 <p align="center">
 <img width="70%" title="Allure TestOps DashBoard" src="media/screenshots/testops.JPG">
@@ -184,7 +204,7 @@ Allure TestOps is a TMS for test cases organizing. It helps to plan and manage b
 ____
 
 <a id="jira"></a>
-## <img width="4%" style="vertical-align:bottom" title="Jira" src="media/icons/Jira.svg"> </a> Integration with <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1084"> Jira </a>
+## <img width="4%" style="vertical-align:bottom" title="Jira" src="src/test/resources/icons/Jira.svg"> </a> Integration with <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1084"> Jira </a>
 
 Integration of **Allure TestOps** and **Jira** is implemented. In the Jira task you can link test-cases or launches for the test-management purposes.
 
@@ -207,7 +227,7 @@ ____
 
 ____
 <a id="video"></a>
-## <img width="4%" style="vertical-align:bottom" title="Selenoid" src="media/icons/Selenoid.svg"> </a> Video attachment example
+## <img width="4%" style="vertical-align:bottom" title="Selenoid" src="src/test/resources/icons/Selenoid.svg"> </a> Video attachment example
 
 The video of a test execution is attach to every testcase:
 
