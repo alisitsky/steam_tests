@@ -3,7 +3,7 @@
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div>
-Project of test automation for <b>steampowered</b> products:<br>
+Demo project of test automation for <b>steampowered</b> products:<br>
     - <a href="https://store.steampowered.com"><b>store</b>.steampowered.com</a><br>
     - <a href="https://api.steampowered.com"><b>api</b>.steampowered.com</a><br>
   </div>
@@ -22,7 +22,7 @@ ____
 - <a href="#runtests">Local Tests Execution</a>
 - <a href="#jenkins">Jenkins Build</a>
 - <a href="#allureReport">Allure Report Example</a>
-- <a href="#allure">Allure TestOps Integration</a>
+- <a href="#allure">Allure TestOps TMS Integration</a>
 - <a href="#jira">Jira Integration</a>
 - <a href="#telegram">Slack / TG Notifications</a>
 - <a href="#video">Test execution video</a>
@@ -30,10 +30,6 @@ ____
 ____
 <a id="tools"></a>
 ## Tech stack and tools
-
-<p>
-
-
 
 **Code:**
     <a href="https://www.java.com/">
@@ -78,7 +74,7 @@ ____
         </a>
 <br><br>
 Web tests are written in [**Java**](https://www.java.com/), using [**Selenide**](https://selenide.org/) framework. For API tests [**REST-assured**](https://rest-assured.io/) is used. The build tool here is [**Gradle**](https://gradle.org/).  
-As soon as [**Jenkins**](https://www.jenkins.io/) build is started tests are being remotly executed in [**Selenoid**](https://aerokube.com/selenoid/).  
+As soon as [**Jenkins**](https://www.jenkins.io/) build is started tests are being remotly executed in [**Selenoid**](https://aerokube.com/selenoid/) - implementation of **Selenium hub**, which is using Docker to launch browsers.  
 Then  [**Allure Report**](https://allurereport.org/) is generated (containing steps, screens, videos, logs), and notifications are sent to Slack and Telegram.  
 [**Allure TestOps**](https://qameta.io/) and [**Jira**](https://www.atlassian.com/software/jira) has also been integrated for test management and issue tracking purposes.
 ____
@@ -87,7 +83,7 @@ ____
 **WEB**:
 - Cart
   - Display of games in the cart
-  - Remove 1 of 3 games
+  - Remove 1 out of 3 games
   - Remove all games
 - Language
   - Change interface language [parametrized]
@@ -101,7 +97,7 @@ ____
   - Json schema validation
   - Response content-type is changed by cgi [parametrized]
   - News count is changed by cgi [parametrized]
-  - All the news have given tag
+  - News are filtered by given tag
 
 ____
 <a id="runtests"></a>
@@ -210,7 +206,16 @@ ____
 <a id="jira"></a>
 ## <img width="4%" style="vertical-align:bottom" title="Jira" src="src/test/resources/icons/Jira.svg"> </a> Integration with <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1084"> Jira </a>
 
-todo
+Integration of Allure TestOps and Jira allows to link jira tasks with test-cases or launches:
+
+<p align="center">
+<img width="70%" title="Allure TestOps DashBoard" src="src/test/resources/screenshots/jira-2.JPG">
+</p>
+
+<p align="center">
+<img width="70%" title="Allure TestOps DashBoard" src="src/test/resources/screenshots/jira-1.JPG">
+</p>
+
 
 ____
 
@@ -228,10 +233,9 @@ ____
 ____
 <a id="video"></a>
 ## <img width="4%" style="vertical-align:bottom" title="Selenoid" src="src/test/resources/icons/Selenoid.svg"> </a> Video attachment example
-todo
 
-The video of a test execution is attach to every testcase:
+Video of a test execution is attached to every test in report:
 
 <p align="center">
-  <img title="Selenoid attachment" src="media/screenshots/test.gif">
+  <img title="Selenoid attachment" src="src/test/resources/gifs/test.gif">
 </p>
