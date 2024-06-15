@@ -9,7 +9,7 @@ Project of test automation for <b>steampowered</b> products:<br>
   </div>
   <div>
     <a href="https://store.steampowered.com">
-      <img alt="https://store.steampowered.com" src="src/test/resources/icons/steam-120.svg" style="width: 80%;">
+      <img style="width: 70px;" alt="https://store.steampowered.com" src="src/test/resources/icons/steam-120.svg">
     </a>
   </div>
 </div>
@@ -157,7 +157,7 @@ ____
 
 Allure Report is an opensource tool for detailed customizable autotest reports, providing additional info (screenshots, videos, logs) to make debugging easier.
 
-[**Report example link**](https://jenkins.autotests.cloud/job/steampowered-store-web-tests/34/allure/#)
+[**Report example link**](https://jenkins.autotests.cloud/job/steampowered-store-web-tests/34/allure/#) (accessible if authorized in Jenkins)
 
 
 <details>
@@ -182,23 +182,27 @@ ____
 <a id="allure"></a>
 ## <img width="3%" style="vertical-align:bottom" title="Allure TestOps" src="src/test/resources/icons/AllureTestOps.svg"> </a> <a target="_blank" href="https://qameta.io/"> Allure TestOps </a> Integration
 
-**Allure TestOps** is a powerful TMS for manual and automation testing. In this project some of its features have been implemented:
+**Allure TestOps** is a powerful TMS for manual and automation testing. 
+
+<b>Test-cases section screenshot:</b>
+
+<p align="center">
+<img width="70%" title="Allure Overview" src="src/test/resources/screenshots/testops-1.JPG">
+</p>
+
+In this project some of its features have been implemented:
 
 - Integration with CI/CD (Jenkins)
 - Execution of any set of autotests directly from TMS
 - Test-cases auto-update after every run
 - Integration with JIRA
-- Various analytics on test runs
- 
+- Various analytics on test runs:</b></summary>
+
  
 
 
 <p align="center">
-<img width="70%" title="Allure TestOps DashBoard" src="media/screenshots/testops.JPG">
-</p>
-
-<p align="center">
-<img width="70%" title="Allure TestOps Test cases" src="media/screenshots/testops2.JPG">
+<img width="70%" title="Allure TestOps DashBoard" src="src/test/resources/screenshots/testops-2.JPG">
 </p>
 
 ____
@@ -206,21 +210,17 @@ ____
 <a id="jira"></a>
 ## <img width="4%" style="vertical-align:bottom" title="Jira" src="src/test/resources/icons/Jira.svg"> </a> Integration with <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1084"> Jira </a>
 
-Integration of **Allure TestOps** and **Jira** is implemented. In the Jira task you can link test-cases or launches for the test-management purposes.
-
-<p align="center">
-<img width="70%" title="Jira Task" src="media/screenshots/jira.JPG">
-</p>
+todo
 
 ____
 
 <a id="telegram"></a>
-## <img style="width: 30px;" title="Slack" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg"> Slack and <img width="4%" style="vertical-align:bottom" title="Telegram" src="media/icons/Telegram.svg"> Telegram notifications
+## <img style="width: 30px;" title="Slack" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg"> Slack and <img width="4%" style="vertical-align:bottom" title="Telegram" src="src/test/resources/icons/Telegram.svg"> Telegram notifications
 
 
 <p align="left">
-  <img width="40%" title="Telegram Notifications" src="media/screenshots/Slack.JPG">
-  <img width="40%" title="Telegram Notifications" src="media/screenshots/tg.JPG">
+  <img width="50%" title="Telegram Notifications" src="src/test/resources/screenshots/slack-notification.JPG">
+  <img width="40%" title="Telegram Notifications" src="src/test/resources/screenshots/telegram-notification.JPG">
 </p>
 
 
@@ -228,6 +228,7 @@ ____
 ____
 <a id="video"></a>
 ## <img width="4%" style="vertical-align:bottom" title="Selenoid" src="src/test/resources/icons/Selenoid.svg"> </a> Video attachment example
+todo
 
 The video of a test execution is attach to every testcase:
 
